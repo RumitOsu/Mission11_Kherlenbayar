@@ -1,0 +1,37 @@
+﻿@model PaginatedList<Mission11_Kherlenbayar.Models.Book>
+
+<h2>Books</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>ISBN</th>
+            <th>Category</th>
+            <th>Page Count</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => book.Title)</td>
+                <td>@Html.DisplayFor(modelItem => book.Author)</td>
+                <td>@Html.DisplayFor(modelItem => book.Publisher)</td>
+                <td>@Html.DisplayFor(modelItem => book.ISBN)</td>
+                <td>@Html.DisplayFor(modelItem => book.Category)</td>
+                <td>@Html.DisplayFor(modelItem => book.PageCount)</td>
+                <td>@Html.DisplayFor(modelItem => book.Price)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index" asp-route-bookPage="@(Model.HasPreviousPage ? Model.PageIndex - 1 : Model.PageIndex)" class="btn btn-primary">Previous</a>
+    @Model.PageIndex <span>of</span> @Model.TotalPages
+    <a asp-action="Index" asp-route-bookPage="@(Model.HasNextPage ? Model.PageIndex + 1 : Model.PageIndex)" class="btn btn-primary">Next</a>
+</div>
